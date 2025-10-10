@@ -548,6 +548,125 @@ p {
     -ms-overflow-style: none;  /* hide scrollbar for IE/Edge */
     scrollbar-width: none;     /* hide scrollbar for Firefox */
   }
+/* Hide scrollbars but keep scroll behavior */
+.mobile-projects {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 15px;
+  padding: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.mobile-projects::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==== Project Card ==== */
+.project-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: 300px;
+  height: 400px;
+  background: #1b1919;
+  border-radius: 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+  transition: transform 0.3s, box-shadow 0.4s ease;
+  border: 2px solid transparent;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* === Glowing electric border === */
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    #16b1b5,
+    #0ff,
+    #16b1b5,
+    #00f0ff
+  );
+  background-size: 300% 300%;
+  animation: electricGlow 4s linear infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+/* === Outer blur glow === */
+.project-card::after {
+  content: "";
+  position: absolute;
+  margin-top: -30%;
+  inset: -6px;
+  border-radius: 20px;
+  background: radial-gradient(circle, var(--electric-glow-color) 0%, transparent 70%);
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+  transition: opacity 0.4s ease;
+}
+
+/* Hover: amplify glow */
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-card:hover::after {
+  opacity: 1;
+}
+
+/* Electric animation */
+@keyframes electricGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Text and layout */
+.project-card h3 {
+  font-size: 1.2em;
+  margin: 10px 0 5px 0;
+}
+
+.project-card p {
+  padding-top: 10px;
+  font-size: 0.9em;
+  flex-grow: 1;
+}
+
+/* Button */
+#bu {
+  position: relative;
+  color: #111;
+  background: #16b1b5;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 0;
+}
 
   .mobile-projects::-webkit-scrollbar {
     display: none;             /* hide scrollbar for Chrome/Safari */
