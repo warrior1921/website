@@ -538,16 +538,6 @@ p {
   margin-left: 22%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.mobile-projects {
-  margin-top: -30%;
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    gap: 15px;
-    padding: 10px;
-    -ms-overflow-style: none;  /* hide scrollbar for IE/Edge */
-    scrollbar-width: none;     /* hide scrollbar for Firefox */
-  }
 /* Hide scrollbars but keep scroll behavior */
 .mobile-projects {
   display: flex;
@@ -668,57 +658,20 @@ p {
   margin-top: 0;
 }
 
-  .mobile-projects::-webkit-scrollbar {
-    display: none;             /* hide scrollbar for Chrome/Safari */
-  }
-
-  .project-card {
-    flex: 0 0 auto;           /* keep width fixed */
-    width: 300px;             /* adjust ratio ~3:4 */
-    height: 400px;
-    background-color: #1b1919;
-     border: 2px solid #16b1b5;
-    border-radius: 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: #fff;
-    transition: transform 0.3s;
-  }
+/* Hide horizontal rules */
 hr {
   display: none;
 }
- #bu {
-    position: relative;
-  color: #111;
-    background: #16b1b5;
- 
-  padding: 10px 20px;
-  border-radius: 10px;
-  display: inline-block;
-  text-decoration: none;
-  font-weight: 600;
-  margin-top:0;
- }
 
-  .project-card h3 {
-    font-size: 1.2em;
-    margin: 10px 0 5px 0;
-  }
-
-  .project-card p {
-    padding-top: 10px;
-    font-size: 0.9em;
-    flex-grow: 1;
-  }
+/* Hide horizontal rules */
+hr {
+  display: none;
+}
 
   /* Optional hover effect */
   .project-card:hover {
     transform: scale(1.05);
   }
-
   /* Footer */
   .div-block-45 {
     flex-direction: row;
