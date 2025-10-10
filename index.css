@@ -1,3 +1,5 @@
+
+
 body {
   margin: 0;
   overflow-x: hidden;
@@ -768,6 +770,60 @@ font-weight: bold;
 .mobile-projects {
   display: none;
 }
+
+
+/* Scrollbar glass component */
+.scrollbar-glass {
+  background: radial-gradient(
+      47.2% 50% at 50.39% 88.37%,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    rgba(255, 255, 255, 0.04);
+  position: relative;
+  transition: background 0.3s ease;
+  border-radius: 14px;
+  width: fit-content;
+  height: fit-content;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  color: #16b1b5;;
+
+}
+
+.scrollbar-glass:hover {
+  background: radial-gradient(
+      47.2% 50% at 50.39% 88.37%,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    rgba(255, 255, 255, 0.08);
+}
+
+.scrollbar-glass::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1px;
+  background: linear-gradient(
+    150deg,
+    rgba(14, 167, 194, 0.863) 16.73%,
+    rgba(255, 255, 255, 0.08) 30.2%,
+    rgba(255, 255, 255, 0.08) 68.2%,
+    rgba(11, 197, 188, 0.6) 81.89%
+  );
+  border-radius: inherit;
+  mask: linear-gradient(#16b1b5 0 0) content-box, linear-gradient(#16b1b5 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
 /* 📱 Mobile Responsive CSS */
 @media (max-width: 768px) {
 
@@ -906,6 +962,7 @@ display: inline-block;
   #aboutb {
     width: 90%;
     margin: 20px auto;
+    margin-left: -2%;
     font-size: 1rem;
   }
 
@@ -919,7 +976,7 @@ display: inline-block;
   font-size: 40px;
 }
   .scroll-container {
-    margin-top: -32%;
+    margin-top: -30%;
     width: 100%;
   }
 .scroll-content {
@@ -942,61 +999,141 @@ display: inline-block;
   
     font-weight: 800;
   }
- .mobile-projects {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    gap: 15px;
-    padding: 10px;
-    -ms-overflow-style: none;  /* hide scrollbar for IE/Edge */
-    scrollbar-width: none;     /* hide scrollbar for Firefox */
-  }
 
-  .mobile-projects::-webkit-scrollbar {
-    display: none;             /* hide scrollbar for Chrome/Safari */
-  }
+ :root {
+  --electric-border-color: #16b1b5;
+  --electric-glow-color: rgba(22, 177, 181, 0.8);
+}
 
-  .project-card {
-    flex: 0 0 auto;           /* keep width fixed */
-    width: 300px;             /* adjust ratio ~3:4 */
-    height: 400px;
-    background-color: #1b1919;
-    border: 2px solid #16b1b5;
-    border-radius: 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: #fff;
-    transition: transform 0.3s;
-  }
-hr {
+/* Hide scrollbars but keep scroll behavior */
+.mobile-projects {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 15px;
+  padding: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.mobile-projects::-webkit-scrollbar {
   display: none;
 }
- #bu {
-    position: relative;
+
+/* ==== Project Card ==== */
+.project-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: 300px;
+  height: 400px;
+  background: #1b1919;
+  border-radius: 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+  transition: transform 0.3s, box-shadow 0.4s ease;
+  border: 2px solid transparent;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* === Glowing electric border === */
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    #16b1b5,
+    #0ff,
+    #16b1b5,
+    #00f0ff
+  );
+  background-size: 300% 300%;
+  animation: electricGlow 4s linear infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+/* === Outer blur glow === */
+.project-card::after {
+  content: "";
+  position: absolute;
+  margin-top: -30%;
+  inset: -6px;
+  border-radius: 20px;
+  background: radial-gradient(circle, var(--electric-glow-color) 0%, transparent 70%);
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+  transition: opacity 0.4s ease;
+}
+
+/* Hover: amplify glow */
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-card:hover::after {
+  opacity: 1;
+}
+
+/* Electric animation */
+@keyframes electricGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Text and layout */
+.project-card h3 {
+  font-size: 1.2em;
+  margin: 10px 0 5px 0;
+}
+
+.project-card p {
+  padding-top: 10px;
+  font-size: 0.9em;
+  flex-grow: 1;
+}
+
+/* Button */
+#bu {
+  position: relative;
   color: #111;
-    background: #16b1b5;
- 
+  background: #16b1b5;
   padding: 10px 20px;
   border-radius: 10px;
   display: inline-block;
   text-decoration: none;
   font-weight: 600;
-  margin-top:0;
- }
+  margin-top: 0;
+}
 
-  .project-card h3 {
-    font-size: 1.2em;
-    margin: 10px 0 5px 0;
-  }
+/* Hide horizontal rules */
+hr {
+  display: none;
+}
 
-  .project-card p {
-    padding-top: 10px;
-    font-size: 0.9em;
-    flex-grow: 1;
-  }
+/* Hide horizontal rules */
+hr {
+  display: none;
+}
 
   /* Optional hover effect */
   .project-card:hover {
