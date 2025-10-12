@@ -114,6 +114,18 @@ body {
   margin-bottom: 15px;
   color: #fff5f5;
 }
+#download {
+      position: relative;
+  color: #111;
+    background: #16b1b5;
+ margin-left: 41%;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 5%;
+}
 .about-text a {
      position: relative;
   color: #111;
@@ -659,6 +671,9 @@ font-weight: bold;
     font-size: 1.8rem;
    
     margin-left: 0%;
+}
+#download {
+  margin-left: 5%;
 }
  .about-text {
   display: inline-block;
