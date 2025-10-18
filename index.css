@@ -9,17 +9,21 @@ body {
     width: 30%;
     margin-left: 81%;
     margin-top: -3.5%;
+    animation: slideLeft 2s ease-out forwards;
 }
-.logo {
+.logot {
+   animation: slideDown 2s ease-out forwards;
   margin-top: 7px;
 }
 
 #name {
+   animation: slideDown 2s ease-out forwards;
   color: #16b1b5;
   margin-right: 40%;
 }
 
 .navbar {
+   animation: slideDown 2s ease-out forwards;
   color: white;
   width: 90%;
   height: 60px;
@@ -63,6 +67,7 @@ body {
 
 
 .tagline {
+  animation: slideRight 2s ease-out forwards;
     font-size: 28px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -104,6 +109,7 @@ body {
     margin-left: -1%;
     margin-top: 4%;
     overflow: hidden;
+    animation: slideUp 2s ease-out forwards;
 }
 #aboutb a {
   position: relative;
@@ -130,32 +136,198 @@ body {
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
+
+/* Slide Up */
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Slide Right */
+@keyframes slideRight {
+  0% { opacity: 0; transform: translateX(-40px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+
+/* Slide Down */
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+@keyframes slideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+
+
 #hs {
-  margin-top:  0%;
+  margin-top:  -1%;
  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 70px;
   color: #16b1b5;
  text-align: center;
- 
+ animation: slideDown 2s ease-out forwards;
 }
     .scroll-content {
       display: flex;
-      width: max-content;
-      animation: scroll 30s linear infinite;
-    }
+   gap: -60%;
+      margin-top: 16%;
+     animation: scroll 25s linear infinite;
 
+     
+    }
+.scroll-container {
+  display: none;
+}
+.scroll-contents {
+  display: none;
+}
     .scroll-content img {
       height: 800px;  /* adjust card size */
     }
 
-    @keyframes scroll {
-      from {
-        transform: translateX(0);
-      }
-      to {
-        transform: translateX(-50%);
-      }
+    .hcards {
+margin-top: -15%;
+margin-bottom: 15%;
+        position: relative;
+  flex: 0 0 auto;
+  width: 230px;
+  height: 320px;
+  background: #1b1919;
+  border-radius: 15px;
+  padding: 25px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  color: #fff;
+  transition: transform 0.3s, box-shadow 0.4s ease;
+margin-left: 5%;
+  z-index: 1;
+  isolation: isolate;
+      
+      border: 1px solid #16b1b5 ;
+      transform: translateY(-400px); /* start above */
+  animation: drop 0.6s forwards;
     }
+    /* Staggered animation using nth-child */
+/* Drop Animation */
+@keyframes drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to each card */
+.hcards {
+  opacity: 0;
+  transform: translateY(-60px);
+  animation: drop 1.2s ease-out forwards; /* 'forwards' keeps final state */
+}
+
+/* Staggered timing for smooth sequential drop */
+.hcards:nth-child(1) { animation-delay: 0.3s; }
+.hcards:nth-child(2) { animation-delay: 0.6s; }
+.hcards:nth-child(3) { animation-delay: 0.9s; }
+.hcards:nth-child(4) { animation-delay: 1.2s; }
+.hcards:nth-child(5) { animation-delay: 1.5s; }
+
+    .hcards h3 {
+    z-index: 5;
+      color: #00f0ff;
+      font-size: 20px;
+      text-align: center;
+      display: flex;
+      margin-left: -6%;
+       margin-top: 10%;
+      
+    }
+.hcards p {
+  z-index: 5;
+  margin-top: -7%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+   margin-left: -5%;
+  font-size: 0.7em;
+  flex-grow: 1;
+}
+.hcards img {
+   border-radius: 10px;
+   width: 200px;
+   margin-bottom: 0;
+   margin-top: -7%;
+   margin-left: -6%;
+}
+
+ :root {
+  --electric-border-color: #16b1b5;
+  --electric-glow-color: rgba(22, 177, 181, 0.8);
+}
+/* === Glowing electric border === */
+.hcards::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  padding: 2px;
+  background: linear-gradient(
+    165deg,
+    #16b1b5,
+    #0ff,
+    #16b1b5,
+    #00f0ff
+  );
+  background-size: 300% 300%;
+  animation: electricGlow 4s linear infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+/* === Outer blur glow === */
+.hcards::after {
+  content: "";
+  width: 500px;
+  height: 300px;
+  position: absolute;
+  margin-top: 15%;
+  margin-left: -60%;
+  inset: -6px;
+  border-radius: 20px;
+  background: radial-gradient(circle, var(--electric-glow-color) 0%, transparent 70%);
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: 4;
+  transition: opacity 0.4s ease;
+}
+ @keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
     #ptitle {
       font-size: 40px;
       color: white;
@@ -826,7 +998,6 @@ font-weight: bold;
 
 /* 📱 Mobile Responsive CSS */
 @media (max-width: 768px) {
-
   body {
       margin: 0;
   overflow-x: hidden;
@@ -869,7 +1040,7 @@ font-weight: bold;
     height: auto; /* allow stretch */
   }
 
-  .logo img {
+  .logot img {
     margin-top: -15%;
     margin-left: -230%;
     height: 60px;
@@ -975,14 +1146,32 @@ display: inline-block;
   color: white;
   font-size: 40px;
 }
+
   .scroll-container {
     margin-top: -30%;
     width: 100%;
   }
-.scroll-content {
-   animation: scroll 20s linear infinite;
+ .hcards {
+ 
+    display: none;
+  }
+  .scroll-container {
+    animation: scroll 25s linear infinite;
+  display: flex;
 }
-  .scroll-content img {
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.scroll-contents {
+   display: flex;
+      width: max-content;
+      animation: scroll 30s linear infinite;
+      
+  
+}
+
+  .scroll-contents img {
     height: 550px;
   }
 
@@ -995,7 +1184,7 @@ display: inline-block;
     display: none;
   }
   #ptitle {
-    margin-top: -35%;
+    margin-top: -50%;
   
     font-weight: 800;
   }
