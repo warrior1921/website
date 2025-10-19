@@ -325,7 +325,7 @@ margin-left: 5%;
 }
  @keyframes scroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-30%); }
 }
 
     #ptitle {
@@ -1148,22 +1148,62 @@ display: inline-block;
 }
 
   .scroll-container {
+    display: none;
     margin-top: -30%;
     width: 100%;
   }
- .hcards {
+  .hcards {
+    width: 350px;
+    height: 200px;
+    flex-shrink: 0;         /* prevent card squishing */
+    margin-right: 10px;     /* small gap between cards */
+  
+  }
  
-    display: none;
+  .scroll {
+        overflow-y: visible;
+overflow-x: scroll;
+ 
+  scroll-behavior: smooth;
+  }
+.scroll-content {
+  overflow: visible;
+padding-top: 10px;
+   animation: none;
+
+  display: flex;
+  margin-top: 40%;
+}
+  .hcards img {
+    width: 335px;
+    opacity: 0.5;
+  }
+  .hcards::before {
+    z-index: 7;
   }
   .scroll-container {
+    display: none;
     animation: scroll 25s linear infinite;
   display: flex;
 }
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+.hcards h3 {
+  z-index: 90;
+  margin-top: -40%;
 }
+.hcards p {
+  z-index: 90;
+  margin-top: -4%;
+}
+.hcards::after {
+   width: 800px;
+   margin-top: 0%;
+  height: 200px;
+  z-index: 1;
+}
+
+
 .scroll-contents {
+  display: none;
    display: flex;
       width: max-content;
       animation: scroll 30s linear infinite;
@@ -1172,6 +1212,7 @@ display: inline-block;
 }
 
   .scroll-contents img {
+    display: none;
     height: 550px;
   }
 
@@ -1184,7 +1225,7 @@ display: inline-block;
     display: none;
   }
   #ptitle {
-    margin-top: -50%;
+    margin-top: -10%;
   
     font-weight: 800;
   }
@@ -1208,7 +1249,9 @@ display: inline-block;
 .mobile-projects::-webkit-scrollbar {
   display: none;
 }
-
+.scroll-content::-webkit-scrollbar {
+  display: none;
+}
 /* ==== Project Card ==== */
 .project-card {
   position: relative;
