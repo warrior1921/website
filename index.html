@@ -330,5 +330,107 @@
 </div><div class="div-block-33"><div class="menu-itm-continer-2"><div class="menu-itm-head">Contact</div></div><div class="menu-itm-continer-2"><a href="mailto:contactthespecial.in" class="meni-tem-txt">contactthespecial.in</a></div></div></div>
 </section>
 </body>
+<script>document.addEventListener("DOMContentLoaded", () => {
+  const card = document.querySelector(".card"); // or .why-box, etc.
 
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        card.style.animationPlayState = "running";
+      } else {
+        card.style.animationPlayState = "paused";
+      }
+    });
+  }, { threshold: 0.2 });
+
+  card.style.animationPlayState = "paused"; // pause until visible
+  observer.observe(card);
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelector(".cards"); // or .why-box, etc.
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        cards.style.animationPlayState = "running";
+      } else {
+        cards.style.animationPlayState = "paused";
+      }
+    });
+  }, { threshold: 0.2 });
+
+  cards.style.animationPlayState = "paused"; // pause until visible
+  observer.observe(cards);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const boxes = document.querySelectorAll(".why-box");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        boxes.forEach((box, index) => {
+          setTimeout(() => {
+            box.style.animationPlayState = "running";
+          }, index * 200); // stagger delay (6 boxes = ~2.4s total)
+        });
+        observer.disconnect(); // run once
+      }
+    });
+  }, { threshold: 0.3 });
+
+  boxes.forEach((box) => {
+    observer.observe(box);
+    box.style.animationPlayState = "paused";
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const card = document.querySelector("#fa"); // or .why-box, etc.
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        fa.style.animationPlayState = "running";
+      } else {
+        fa.style.animationPlayState = "paused";
+      }
+    });
+  }, { threshold: 0.2 });
+
+  fa.style.animationPlayState = "paused"; // pause until visible
+  observer.observe(fa);
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const summary = document.querySelector(".faq summary"); // or .why-box, etc.
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        summary.style.animationPlayState = "running";
+      } else {
+        summary.style.animationPlayState = "paused";
+      }
+    });
+  }, { threshold: 0.2 });
+
+  summary.style.animationPlayState = "paused"; // pause until visible
+  observer.observe(summary);
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const margin = document.querySelector("#margin"); // or .why-box, etc.
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        margin.style.animationPlayState = "running";
+      } else {
+        margin.style.animationPlayState = "paused";
+      }
+    });
+  }, { threshold: 0.2 });
+
+  margin.style.animationPlayState = "paused"; // pause until visible
+  observer.observe(margin);
+});
+</script>
 </html>

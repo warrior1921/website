@@ -3,21 +3,26 @@ body {
   overflow-x: hidden;
   background:black;
 }
+
 .curve {
     width: 30%;
     margin-left: 81%;
     margin-top: -3.5%;
+    animation: slideLeft 2s ease-out forwards;
 }
-.logo {
+.logot {
+   animation: slideDown 2s ease-out forwards;
   margin-top: 7px;
 }
 
 #name {
+   animation: slideDown 2s ease-out forwards;
   color: #16b1b5;
   margin-right: 40%;
 }
 
 .navbar {
+   animation: slideDown 2s ease-out forwards;
   color: white;
   width: 90%;
   height: 60px;
@@ -59,6 +64,54 @@ body {
   color: #16b1b5;
 }
 
+/* Slide Up */
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Slide Right */
+@keyframes slideRight {
+  0% { opacity: 0; transform: translateX(-40px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+
+/* Slide Down */
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+@keyframes slideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+    /* Staggered animation using nth-child */
+/* Drop Animation */
+@keyframes drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 .about-section {
   background: #000000;
@@ -93,6 +146,7 @@ body {
   flex: 1;
 }
 .about-text h1 {
+  animation: slideUp 2s ease-out forwards;
   margin-left: 15%;
   font-size: 2.2rem;
   margin-bottom: 15px;
@@ -100,6 +154,7 @@ body {
 }
 
 .about-text p {
+  animation: slideUp 2s ease-out forwards;
   display: inline-block;
   width: 500px;
  margin-left: 15%;
@@ -108,6 +163,7 @@ body {
   line-height: 1.7;
 }
 .about-texts h1 {
+   animation: slideUp 2s ease-out forwards;
     margin-left: 23%;
   display: inline-block;
   font-size: 2.2rem;
@@ -116,6 +172,7 @@ body {
 }
 
 .about-texts p {
+   animation: slideUp 2s ease-out forwards;
    margin-left: 23%;
   display: inline-block;
   width: 500px;
@@ -134,11 +191,13 @@ body {
   text-align: center;
 }
 .about-image img {
+  animation: slideRight 2s ease-out forwards;
   width: 130%;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
 .about-images img {
+  animation: slideLeft 2s ease-out forwards;
   width: 80%;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.1);
@@ -161,6 +220,8 @@ border: 2px solid grey;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
+  
+ animation: pasteIn 2s ease-out forwards , glow-normal 1.2s ease-in-out infinite alternate;
 }
 
 .about-card h2 {
@@ -182,7 +243,7 @@ border: 2px solid grey;
 
 /* Section Styling */
 .why-choose {
-  margin-top: -7%;
+  margin-top: 8%;
   
   text-align: center;
   padding: 50px 20px;
@@ -194,6 +255,7 @@ border: 2px solid grey;
   color: white;
   display: inline;
   margin-bottom: 40px;
+   animation: slideRight 2s ease-out forwards;
 }
 
 .why-choose h2 span {
@@ -210,25 +272,68 @@ border: 2px solid grey;
 }
 
 /* Individual Box */
+@keyframes pasteIn {
+  0% {
+    opacity: 0;
+    transform: translateY(150px) scale(1.5); /* off-screen start */
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.05); /* slight overshoot */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1); /* final position */
+  }
+}
+
 .why-box {
   width: 80%;
-   border: 2px solid grey;
-  background: #000000; /* Box background */
+  border: 2px solid grey;
+  background: #000000;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  text-align: left; /* Align content inside box to left */
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  opacity: 0;
+  transform: translateY(150px) scale(0.8);
+  animation: pasteIn 0.6s ease-out forwards , glow-normal 1.2s ease-in-out infinite alternate;
+  animation-play-state: paused; /* pause until scrolled */
+  will-change: transform, opacity;
 }
 
 .why-box:hover {
   border: 2px solid #16b1b5;
-  transform: translateY(-5px); /* Hover effect */
+  transform: translateY(-5px); /* Hover transform */
+ 
 }
+
 .why-label:hover {
   color: #16b1b5;
 
 }
+@keyframes glow-normal {
+  0% {
+    box-shadow: 0 0 6px rgba(0, 255, 255, 0.28),
+                0 0 18px rgba(0, 255, 255, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.5),
+                0 0 30px rgba(0, 255, 255, 0.18);
+  }
+  100% {
+    box-shadow: 0 0 6px rgba(0, 255, 255, 0.28),
+                0 0 18px rgba(0, 255, 255, 0.12);
+  }
+}
+
+
 /* Top row (icon + label) */
 .why-top {
   display: flex;
@@ -429,8 +534,10 @@ font-weight: bold;
     margin-top: -2%;
     font-weight: lighter;
 }
+
 #margin {
   margin-top: -10%;
+   animation: slideUp 2s ease-out forwards;
 }
 .mobile-menu{
   display: none;
