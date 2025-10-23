@@ -444,7 +444,7 @@ margin-left: 5%;
 .card:hover .product_img {
   transition-delay: 0.75s;
   top: 50%;
-  left: 80%;
+  left: 78%;
   height: 350px;
   transform: translate(-50%, -50%) scale(1) rotate(1deg);
 }
